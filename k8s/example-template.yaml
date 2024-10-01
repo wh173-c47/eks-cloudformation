@@ -1,0 +1,15 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: gpu-training-job
+spec:
+  template:
+    spec:
+      containers:
+        - name: training-container
+          image: <user-docker-image>
+          resources:
+            limits:
+              nvidia.com/gpu: 1
+      restartPolicy: Never
+  backoffLimit: 4
